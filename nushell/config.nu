@@ -758,5 +758,8 @@ $env.config = {
     ]
 }
 
+# zoxide
+source ~/.cache/.zoxide.nu
+
 # starship
 use ~/.cache/starship/init.nu
