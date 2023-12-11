@@ -12,27 +12,6 @@ set "editor=emacs neovim vscode helix"
 set "sdk=lua-language-server rustup-msvc vulkan python"
 
 
-REM Check if Scoop is already installed
-where scoop >nul 2>nul
-if %errorlevel% equ 0 (
-    echo ------- Scoop is already installed.
-    goto :scoop
-)
-
-REM Install Scoop
-iwr -useb get.scoop.sh | iex
-
-REM Check if the installation was successful
-where scoop >nul 2>nul
-if %errorlevel% equ 0 (
-    echo ------- Scoop has been installed successfully.
-) else (
-    echo ------- Failed to install Scoop.
-)
-
-:scoop
-
-
 echo ------- Scoop add buckets
 REM Scoop add bucket
 for %%i in (%buckets%) do (
