@@ -16,13 +16,13 @@ if %errorlevel% equ 0 (
 ::: About scoop to install app 
 ::
 set "buckets=extras versions java games"
-set "base=7zip dark innounp git"
+set "base=7zip unzip wget dark innounp git"
 set "tools=ccache pkg-config make cmake uutils-coreutils everything renderdoc apktool"
 set "shell=nu"
 set "cli=fzf ripgrep lazygit windows-terminal zoxide starship"
 set "apps=blender logseq obs-studio powertoys telegram xmind fontcreator firefox steam"
 set "editor=emacs neovim vscode helix"
-set "sdk=lua-language-server rustup-msvc vulkan python mingw-winlibs-llvm-ucrt-mcf openjdk16"
+set "sdk=luarocks lua-language-server rustup-msvc vulkan python mingw-winlibs-llvm-ucrt-mcf openjdk16"
 
 
 echo ------- Scoop add buckets
