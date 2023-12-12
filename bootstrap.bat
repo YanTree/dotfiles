@@ -1,5 +1,18 @@
 @echo off
 
+
+:: Detection scoop exist
+REM Check scoop is installed
+call where scoop >nul 2>nul
+REM Check the exit code to determine existence
+if %errorlevel% equ 0 (
+    echo ------- Homo, scoop is ready!.
+) else (
+    echo ------- First go to install scoop, follow link:
+    echo ------- https://scoop.sh/#/
+)
+
+
 ::: About scoop to install app 
 ::
 set "buckets=extras versions java games"
