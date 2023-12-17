@@ -758,6 +758,9 @@ $env.config = {
     ]
 }
 
+# http proxy
+use ~/.config/nushell/modules/proxy.nu
+
 # zoxide
 source ~/.cache/.zoxide.nu
 
