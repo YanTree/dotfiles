@@ -1,3 +1,4 @@
+# Proxy start!
 export def --env start-default [] {
   if "HTTP_PROXY" not-in $env {
     echo "☀️ Use 10809 port, it's v2ray default port!"
@@ -11,6 +12,7 @@ export def --env start-default [] {
 }
 
 
+# Proxy end!
 export def --env hide-default [] {
   if "HTTP_PROXY" in $env {
     echo "🌨️ Now, you remove http proxy!"
