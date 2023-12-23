@@ -1,10 +1,16 @@
 @echo off
 
 
+:: Window useful tools?
+echo ------- Windows module
+echo ------- irm https://massgrave.dev/get ^| iex
+
+
 :: Detection scoop exist
 REM Check scoop is installed
 call where scoop >nul 2>nul
 REM Check the exit code to determine existence
+echo ------- Scoop module
 if %errorlevel% equ 0 (
     echo ------- Homo, scoop is ready!.
 ) else (
@@ -17,15 +23,15 @@ if %errorlevel% equ 0 (
 ::
 set "buckets=extras versions java games"
 set "base=7zip unzip wget dark innounp git"
-set "tools=ccache pkg-config make cmake uutils-coreutils everything renderdoc apktool"
+set "tools=ccache pkg-config make cmake uutils-coreutils everything renderdoc apktool wezterm"
 set "shell=nu"
-set "cli=fzf ripgrep lazygit windows-terminal zoxide starship"
+set "cli=unar jq poppler fd fzf ripgrep lazygit windows-terminal yazi zoxide starship"
 set "apps=blender logseq obs-studio powertoys telegram xmind fontcreator firefox steam"
 set "editor=emacs neovim vscode helix"
 set "sdk=luarocks lua-language-server rustup-msvc vulkan python mingw-winlibs-llvm-ucrt-mcf openjdk16"
 
 
-echo ------- Scoop add buckets
+echo ------- Scoop buckets module
 REM Scoop add bucket
 for %%i in (%buckets%) do (
     call scoop bucket add %%i
