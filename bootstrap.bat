@@ -104,8 +104,6 @@ if %errorlevel% equ 0 (
 ) else (
     echo ------- [Path] path variable to create... 
     reg add HKCU\Environment /v PATH /t REG_EXPAND_SZ /d "%PATH%;%git_usr_bin%" /f
-    REM set "PATH=%PATH%;%git_usr_bin%;"
-    REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "Path" /t REG_EXPAND_SZ /d "%PATH%" /f
     echo ------- [Path] : %git_usr_bin%
     echo ------- Done!
 )
@@ -136,9 +134,14 @@ if not exist "%dir_cache%" (
 )
 
 REM Git repository
-echo ------- Clone neovim config
+echo ------- Neovim config
 set "nvchad=git@github.com:YanTree/NvChad.git"
-call git clone -b main "%nvchad%" nvim
+if not exist "%src_nvim%" (
+    echo ------- Clone %nvchad%
+    call git clone -b main "%nvchad%" nvim
+) else (
+    echo ------- NvChad config is ready!
+)
 
 
 REM Create symbol link
