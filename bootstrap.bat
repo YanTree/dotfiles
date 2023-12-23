@@ -74,6 +74,42 @@ for %%i in (%sdk%) do (
 )
 
 
+::Detection HOME environment variable is ready!
+::
+REM Add `HOME` environment variable
+set "home=HOME"
+set "home_path=%USERPROFILE%"
+set "git_usr_bin=%USERPROFILE%\scoop\apps\git\current\usr\bin"
+
+rem Check if a user environment variable exists
+reg query HKCU\Environment /v %home% >nul 2>&1
+
+if %errorlevel% equ 0 (
+    echo ------- [%home%] environment variable is ready!
+    echo ------- [%home%] : %home_path%
+) else (
+    echo ------- [%home%] environment variable to create... 
+
+    setx %home% %home_path%
+    echo ------- [%home%] : %home_path%
+    echo ------- Done!
+)
+
+rem Check if a user environment variable exists
+echo %PATH% | find /i "%git_usr_bin%" >nul
+
+if %errorlevel% equ 0 (
+    echo ------- [Path] path variable is ready!
+    echo ------- [Path] : %git_usr_bin%
+) else (
+    echo ------- [Path] path variable to create... 
+    reg add HKCU\Environment /v PATH /t REG_EXPAND_SZ /d "%PATH%;%git_usr_bin%" /f
+    REM set "PATH=%PATH%;%git_usr_bin%;"
+    REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "Path" /t REG_EXPAND_SZ /d "%PATH%" /f
+    echo ------- [Path] : %git_usr_bin%
+    echo ------- Done!
+)
+
 
 ::: About create symbol link
 ::
