@@ -1,4 +1,4 @@
 /nushell/history*
 /lazygit/state*
 /scoop/config*
-/nvim/
+/nvim/lazy-lock.json

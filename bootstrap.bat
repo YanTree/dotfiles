@@ -139,16 +139,6 @@ if not exist "%dir_cache%" (
     call mkdir %dir_cache%
 )
 
-REM Git repository
-echo ------- Neovim config
-set "nvchad=git@github.com:YanTree/NvChad.git"
-if not exist "%src_nvim%" (
-    echo ------- Clone %nvchad%
-    call git clone -b main "%nvchad%" nvim
-) else (
-    echo ------- NvChad config is ready!
-)
-
 
 REM Create symbol link
 echo ------- Create symbol link
