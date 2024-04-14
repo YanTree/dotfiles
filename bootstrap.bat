@@ -3,8 +3,8 @@
 
 :: Window useful tools?
 echo ------- Active Windows and Office(Blue PowerShell to run)
-echo ------- irm https://massgrave.dev/get ^| iex
-
+echo ----------- irm https://massgrave.dev/get ^| iex
+echo.
 
 :: Detection scoop exist
 REM Check scoop is installed
@@ -12,11 +12,12 @@ call where scoop >nul 2>nul
 REM Check the exit code to determine existence
 echo ------- Scoop module
 if %errorlevel% equ 0 (
-    echo ------- Homo, scoop is ready!.
+    echo ----------- Homo, scoop is ready!.
 ) else (
-    echo ------- First go to install scoop, follow link:
-    echo ------- https://scoop.sh/#/
+    echo ----------- First go to install scoop, follow link:
+    echo ----------- https://scoop.sh/#/
 )
+echo.
 
 
 ::: About scoop to install app 
@@ -36,48 +37,56 @@ REM Scoop install base module
 for %%i in (%base%) do (
     call scoop install %%i
 )
+echo.
 
 echo ------- Scoop buckets module
 REM Scoop add bucket
 for %%i in (%buckets%) do (
     call scoop bucket add %%i
 )
+echo.
 
 echo ------- Tool module
 REM Scoop install tool module
 for %%i in (%tools%) do (
     call scoop install %%i
 )
+echo.
 
 echo ------- Shell module
 REM Scoop install shell module
 for %%i in (%shell%) do (
     call scoop install %%i
 )
+echo.
 
 echo ------- Cli module
 REM Scoop install cli module
 for %%i in (%cli%) do (
     call scoop install %%i
 )
+echo.
 
 echo ------- Apps module
 REM Scoop install apps module
 for %%i in (%apps%) do (
     call scoop install %%i
 )
+echo.
 
 echo ------- Editor module
 REM Scoop install editor module
 for %%i in (%editor%) do (
     call scoop install %%i
 )
+echo.
 
 echo ------- SDK module
 REM Scoop install SDK module
 for %%i in (%sdk%) do (
     call scoop install %%i
 )
+echo.
 
 
 ::Detection HOME environment variable is ready!
@@ -91,28 +100,30 @@ rem Check if a user environment variable exists
 reg query HKCU\Environment /v %home% >nul 2>&1
 
 if %errorlevel% equ 0 (
-    echo ------- [%home%] environment variable is ready!
-    echo ------- [%home%] : %home_path%
+    echo ------- [%home%] environment variable ready!
+    echo ----------- Path : %home_path%
 ) else (
     echo ------- [%home%] environment variable to create... 
 
     setx %home% %home_path%
-    echo ------- [%home%] : %home_path%
+    echo ----------- Path : %home_path%
     echo ------- Done!
 )
+echo.
 
 rem Check if a user environment variable exists
 echo %PATH% | find /i "%git_usr_bin%" >nul
 
 if %errorlevel% equ 0 (
     echo ------- [Path] path variable is ready!
-    echo ------- [Path] : %git_usr_bin%
+    echo ----------- Path : %git_usr_bin%
 ) else (
     echo ------- [Path] path variable to create... 
     reg add HKCU\Environment /v PATH /t REG_EXPAND_SZ /d "%PATH%;%git_usr_bin%" /f
-    echo ------- [Path] : %git_usr_bin%
+    echo ----------- Path : %git_usr_bin%
     echo ------- Done!
 )
+echo.
 
 
 ::: About create symbol link
@@ -150,6 +161,7 @@ call mklink /j %dst_nvim% %src_nvim%
 call mklink /j %dst_helix% %src_helix%
 
 echo ------- Done!
+echo.
 
 REM Pause to keep the console window open (optional)
 pause
