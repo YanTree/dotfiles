@@ -2,7 +2,7 @@
 
 
 :: Window useful tools?
-echo ------- Windows module
+echo ------- Active Windows and Office(Blue PowerShell to run)
 echo ------- irm https://massgrave.dev/get ^| iex
 
 
@@ -21,8 +21,8 @@ if %errorlevel% equ 0 (
 
 ::: About scoop to install app 
 ::
+set "base=7zip git unzip wget dark innounp"
 set "buckets=extras versions java games"
-set "base=7zip unzip wget dark innounp git"
 set "tools=ccache pkg-config make cmake uutils-coreutils everything renderdoc apktool wezterm"
 set "shell=nu"
 set "cli=unar jq poppler fd fzf ripgrep lazygit windows-terminal yazi zoxide starship"
@@ -31,16 +31,16 @@ set "editor=emacs neovim vscode helix"
 set "sdk=luarocks lua-language-server rustup-msvc vulkan python mingw-winlibs-llvm-ucrt-mcf openjdk16"
 
 
-echo ------- Scoop buckets module
-REM Scoop add bucket
-for %%i in (%buckets%) do (
-    call scoop bucket add %%i
-)
-
 echo ------- Base module
 REM Scoop install base module
 for %%i in (%base%) do (
     call scoop install %%i
+)
+
+echo ------- Scoop buckets module
+REM Scoop add bucket
+for %%i in (%buckets%) do (
+    call scoop bucket add %%i
 )
 
 echo ------- Tool module
@@ -126,11 +126,13 @@ REM Data src directory collection
 set "src_lazygit=%dir_default%\lazygit"
 set "src_nushell=%dir_default%\nushell"
 set "src_nvim=%dir_default%\nvim"
+set "src_helix=%dir_default%\helix"
 
 REM Data dst directory collection
 set "dst_lazygit=%dir_roaming%\lazygit"
 set "dst_nushell=%dir_roaming%\nushell"
 set "dst_nvim=%dir_local%\nvim"
+set "dst_helix=%dir_roaming%\helix"
 
 
 REM Create cache folder
@@ -145,6 +147,7 @@ echo ------- Create symbol link
 call mklink /j %dst_lazygit% %src_lazygit%
 call mklink /j %dst_nushell% %src_nushell%
 call mklink /j %dst_nvim% %src_nvim%
+call mklink /j %dst_helix% %src_helix%
 
 echo ------- Done!
 
